@@ -13,11 +13,11 @@ import CardAuthor from "components/CardElements/CardAuthor.jsx";
 import FormInputs from "components/FormInputs/FormInputs.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
-import damirBosnjak from "assets/img/damir-bosnjak.jpg";
-import mike from "assets/img/mike.jpg";
-import ayoOgunseinde2 from "assets/img/faces/ayo-ogunseinde-2.jpg";
-import joeGardner2 from "assets/img/faces/joe-gardner-2.jpg";
-import clemOnojeghuo2 from "assets/img/faces/clem-onojeghuo-2.jpg";
+import damirBosnjak from "assets/img/logo-small.png";
+import mike from "assets/img/logo-small.png";
+import ayoOgunseinde2 from "assets/img/logo-small.png";
+import joeGardner2 from "assets/img/logo-small.png";
+import clemOnojeghuo2 from "assets/img/logo-small.png";
 
 class User extends React.Component {
   render() {
