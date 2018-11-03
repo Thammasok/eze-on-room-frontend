@@ -1,0 +1,36 @@
+@import 'eze-dashboard/variables';
+@import 'eze-dashboard/mixins';
+
+// Plugins CSS
+@import "eze-dashboard/plugins/plugin-animate-bootstrap-notify";
+@import "eze-dashboard/plugins/plugin-perfect-scrollbar";
+
+// Core CSS
+@import "eze-dashboard/buttons";
+@import "eze-dashboard/inputs";
+@import "eze-dashboard/typography";
+@import "eze-dashboard/misc";
+@import "eze-dashboard/checkboxes-radio";
+
+
+// components
+@import "eze-dashboard/navbar";
+@import "eze-dashboard/page-header";
+@import "eze-dashboard/dropdown";
+@import "eze-dashboard/alerts";
+@import "eze-dashboard/images";
+@import "eze-dashboard/nucleo-outline";
+@import "eze-dashboard/tables";
+@import "eze-dashboard/sidebar-and-main-panel";
+@import "eze-dashboard/footers";
+@import "eze-dashboard/fixed-plugin";
+
+// cards
+@import "eze-dashboard/cards";
+@import "eze-dashboard/cards/card-plain";
+@import "eze-dashboard/cards/card-chart";
+@import "eze-dashboard/cards/card-user";
+@import "eze-dashboard/cards/card-map";
+@import "eze-dashboard/cards/card-stats";
+
+@import "eze-dashboard/responsive";
