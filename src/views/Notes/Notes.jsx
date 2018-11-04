@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  CardFooter,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
 
 import Button from "components/CustomButton/CustomButton.jsx";
 

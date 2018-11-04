@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Alert,
   Card,
   CardHeader,
   CardBody,
@@ -9,11 +8,6 @@ import {
   Row,
   Col
 } from "reactstrap";
-// react plugin used to create charts
-import { Line, Pie } from "react-chartjs-2";
-// function that returns a color based on an interval of numbers
-
-import Stats from "components/Stats/Stats.jsx";
 
 class Income extends React.Component {
   constructor(props) {
