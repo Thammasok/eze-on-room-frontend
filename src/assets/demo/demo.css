@@ -119,7 +119,7 @@
 }
 
 .demo-icons ul li {
-  width: 20%;
+  width: 14%;
   float: left;
   padding: 16px 0;
   text-align: center;
@@ -132,6 +132,7 @@
   -ms-user-select: none;
   user-select: none;
   overflow: hidden;
+  list-style-type: none;
 }
 
 .demo-icons ul li:hover {

@@ -76,6 +76,13 @@
         z-index: 1029;
     }
 
+    &.navbar-fixed{
+        position: fixed;
+        width: 100%;
+        padding-top: 10px;
+        z-index: 1029;
+    }
+
     .documentation &{
         &.fixed-top{
             left: 0;

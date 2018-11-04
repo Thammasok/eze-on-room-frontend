@@ -1,5 +1,9 @@
 import Login from "views/Login/Login.jsx";
 import Dashboard from "views/Dashboard/Dashboard.jsx";
+import Notes from "views/Notes/Notes.jsx";
+import Store from "views/Store/Store.jsx";
+import Income from "views/Income/Income.jsx";
+
 import Notifications from "views/Notifications/Notifications.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import Typography from "views/Typography/Typography.jsx";
@@ -31,19 +35,19 @@ var dashRoutes = [
     path: "/note",
     name: "Notes",
     icon: "nc-icon nc-book-bookmark",
-    component: Dashboard
+    component: Notes
   },
   {
     path: "/income",
     name: "Income",
     icon: "nc-icon nc-money-coins",
-    component: Dashboard
+    component: Income
   },
   {
     path: "/store",
     name: "Store",
     icon: "nc-icon nc-box",
-    component: Dashboard
+    component: Store
   },
   {
     path: "/wash",
