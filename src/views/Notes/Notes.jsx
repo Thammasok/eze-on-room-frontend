@@ -10,15 +10,12 @@ import Button from "components/CustomButton/CustomButton.jsx";
 const iconUrl = "https://image.flaticon.com/icons/svg/1055/1055646.svg";
 
 class Notes extends React.Component {
-  constructor(props) {
-    super(props);
-    this.testCall();
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
-  testCall() {
-    // this.props.dispatch(addLocalStorage("Thammasok"));
-    // eslint-disable-next-line react/prop-types
-    this.props.dispatch(getLocalStorageReq("example"));
+  componentDidMount() {
+    this.props.callData();
   }
 
   render() {
@@ -184,9 +181,23 @@ const mapStateToProps = state => {
   };
 };
 
-Notes.propTypes = {
-  messages: PropTypes.object,
-  example: PropTypes.object
+const mapDispatchToProps = (dispatch, ownProps) => {
+  // eslint-disable-next-line no-console
+  console.log(ownProps);
+  return {
+    callData: () => {
+      dispatch(getLocalStorageReq("example"));
+    }
+  };
 };
 
-export default connect(mapStateToProps)(Notes);
+Notes.propTypes = {
+  messages: PropTypes.object,
+  example: PropTypes.object,
+  callData: PropTypes.func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Notes);
