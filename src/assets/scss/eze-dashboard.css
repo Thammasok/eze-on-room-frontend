@@ -2263,12 +2263,12 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     border-bottom: 0 none; }
   .dropdown-menu .dropdown-item:hover,
   .dropdown-menu .dropdown-item:focus {
-    color: #FFFFFF !important;
+    color: #2c2c2c !important;
     opacity: 1;
     text-decoration: none; }
   .dropdown-menu .dropdown-item:hover,
   .dropdown-menu .dropdown-item:focus {
-    background-color: #66615B; }
+    background-color: #E3E3E3; }
   .dropdown-menu.dropdown-primary .dropdown-item:hover,
   .dropdown-menu.dropdown-primary .dropdown-item:focus {
     background-color: #6dd3d6; }

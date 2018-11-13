@@ -1,11 +1,26 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
+
+import { getLocalStorageReq } from "../../actions/example";
 
 import Button from "components/CustomButton/CustomButton.jsx";
 
 const iconUrl = "https://image.flaticon.com/icons/svg/1055/1055646.svg";
 
 class Notes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.testCall();
+  }
+
+  testCall() {
+    // this.props.dispatch(addLocalStorage("Thammasok"));
+    // eslint-disable-next-line react/prop-types
+    this.props.dispatch(getLocalStorageReq("example"));
+  }
+
   render() {
     return (
       <div className="content">
@@ -95,7 +110,9 @@ class Notes extends React.Component {
                       </Col>
                       <Col xs={9} md={9}>
                         <strong className="text-muted">
-                          Instagram Can’t Hide Behind Facebook Anymore
+                          {this.props.example === undefined
+                            ? "Instagram Can’t Hide Behind Facebook Anymore"
+                            : this.props.example.username1}
                         </strong>
                         <br />
                         <span className="text-muted">
@@ -160,4 +177,16 @@ class Notes extends React.Component {
   }
 }
 
-export default Notes;
+const mapStateToProps = state => {
+  return {
+    messages: state.messages,
+    example: state.example
+  };
+};
+
+Notes.propTypes = {
+  messages: PropTypes.object,
+  example: PropTypes.object
+};
+
+export default connect(mapStateToProps)(Notes);

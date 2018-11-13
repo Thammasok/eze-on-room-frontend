@@ -144,14 +144,14 @@
 
     .dropdown-item:hover,
     .dropdown-item:focus{
-        color: $white-color !important;
+        color: $black-color !important;
         opacity: 1;
         text-decoration: none;
 
     }
     .dropdown-item:hover,
     .dropdown-item:focus{
-        background-color: $default-color;
+        background-color: $light-gray;
     }
 
     &.dropdown-primary .dropdown-item:hover,
