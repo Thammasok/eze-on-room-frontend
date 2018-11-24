@@ -1,7 +1,6 @@
 /* eslint-disable react/no-string-refs */
 
 import React from "react";
-import localStorage from "localStorage";
 
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -13,6 +12,8 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 // import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import dashboardRoutes from "routes/dashboard.jsx";
+
+import { isAuthentication } from "../../actions/authentication";
 
 var ps;
 
@@ -54,14 +55,6 @@ class Dashboard extends React.Component {
   //   this.setState({ backgroundColor: color });
   // }
 
-  isAuthentication = () => {
-    if (localStorage.getItem("token") === null) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   render() {
     return (
       <div className="wrapper">
@@ -82,7 +75,7 @@ class Dashboard extends React.Component {
                 return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
               }
               if (prop.isAuth === true) {
-                if (this.isAuthentication()) {
+                if (isAuthentication()) {
                   return (
                     <Route
                       path={prop.path}

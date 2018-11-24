@@ -1,12 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
-import localStorage from "localStorage"
 
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
 import logo from "../../assets/img/logo-emoji.png";
+
+import { isAuthentication } from "../../actions/authentication";
 
 var ps;
 
@@ -14,19 +15,17 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.activeRoute.bind(this);
-    this.isAuthentication.bind(this);
+    this.signOut.bind(this);
   }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
 
-  isAuthentication() {
-    if (localStorage.getItem("token") === null) {
-      return false;
-    } else {
-      return true;
-    }
+  signOut(event) {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    window.location.reload();
   }
 
   componentDidMount() {
@@ -64,7 +63,7 @@ class Sidebar extends React.Component {
             {this.props.routes.map((prop, key) => {
               if (prop.redirect) return null;
               if (prop.isAuth) {
-                if (this.isAuthentication()) {
+                if (isAuthentication()) {
                   if (prop.name === "Login") return null;
                   return (
                     <li
@@ -88,7 +87,7 @@ class Sidebar extends React.Component {
                   return null;
                 }
               } else {
-                if (this.isAuthentication()) {
+                if (isAuthentication()) {
                   if (prop.name === "Login") return null;
                 }
                 return (
@@ -111,6 +110,19 @@ class Sidebar extends React.Component {
                 );
               }
             })}
+            {isAuthentication() ? (
+              <li key="signout">
+                <NavLink
+                  to="/"
+                  onClick={this.signOut}
+                  className="nav-link"
+                  activeClassName="active"
+                >
+                  <i className="nc-icon nc-button-power" />
+                  <p>Sign Out</p>
+                </NavLink>
+              </li>
+            ) : null}
           </Nav>
         </div>
       </div>

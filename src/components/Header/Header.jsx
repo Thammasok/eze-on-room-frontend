@@ -20,6 +20,8 @@ import {
 
 import dashboardRoutes from "routes/dashboard.jsx";
 
+import { isAuthentication } from "../../actions/authentication";
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +33,7 @@ class Header extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.dropdownToggle = this.dropdownToggle.bind(this);
   }
+
   toggle() {
     if (this.state.isOpen) {
       this.setState({
@@ -50,6 +53,7 @@ class Header extends React.Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
+
   getBrand() {
     var name;
     dashboardRoutes.map((prop, key) => {
@@ -75,10 +79,12 @@ class Header extends React.Component {
     });
     return name;
   }
+
   openSidebar() {
     document.documentElement.classList.toggle("nav-open");
     this.refs.sidebarToggle.classList.toggle("toggled");
   }
+
   // function that adds color dark/transparent to the navbar on resize (this is for the collapse)
   updateColor() {
     if (window.innerWidth < 993 && this.state.isOpen) {
@@ -91,9 +97,17 @@ class Header extends React.Component {
       });
     }
   }
+
+  signOut(event) {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    window.location.reload();
+  }
+
   componentDidMount() {
     window.addEventListener("resize", this.updateColor.bind(this));
   }
+
   componentDidUpdate(e) {
     if (
       window.innerWidth < 993 &&
@@ -104,6 +118,7 @@ class Header extends React.Component {
       this.refs.sidebarToggle.classList.toggle("toggled");
     }
   }
+
   render() {
     return (
       // add or remove classes depending if we are on full-screen-maps page or not
@@ -157,41 +172,47 @@ class Header extends React.Component {
                 </InputGroupAddon>
               </InputGroup>
             </form> */}
-            <Nav navbar>
-              <NavItem>
-                <Link to="#pablo" className="nav-link btn-magnify">
-                  <i className="nc-icon nc-layout-11" />
-                  <p>
-                    <span className="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </Link>
-              </NavItem>
-              <Dropdown
-                nav
-                isOpen={this.state.dropdownOpen}
-                toggle={e => this.dropdownToggle(e)}
-              >
-                <DropdownToggle caret nav>
-                  <i className="nc-icon nc-bell-55" />
-                  <p>
-                    <span className="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem tag="a">Action</DropdownItem>
-                  <DropdownItem tag="a">Another Action</DropdownItem>
-                  <DropdownItem tag="a">Something else here</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-              <NavItem>
-                <Link to="/config" className="nav-link btn-rotate">
-                  <i className="nc-icon nc-settings" />
-                  <p>
-                    <span className="d-lg-none d-md-block">Account</span>
-                  </p>
-                </Link>
-              </NavItem>
-            </Nav>
+            {isAuthentication() ? (
+              <Nav navbar>
+                <NavItem>
+                  <Link to="/config" className="nav-link btn-rotate">
+                    <i className="nc-icon nc-settings" />
+                    <p>
+                      <span className="d-lg-none d-md-block">Account</span>
+                    </p>
+                  </Link>
+                </NavItem>
+                <Dropdown
+                  nav
+                  isOpen={this.state.dropdownOpen}
+                  toggle={e => this.dropdownToggle(e)}
+                >
+                  <DropdownToggle caret nav>
+                    <i className="nc-icon nc-bell-55" />
+                    <p>
+                      <span className="d-lg-none d-md-block">Some Actions</span>
+                    </p>
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem tag="a">Action</DropdownItem>
+                    <DropdownItem tag="a">Another Action</DropdownItem>
+                    <DropdownItem tag="a">Something else here</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+                <NavItem>
+                  <Link
+                    to="/"
+                    onClick={this.signOut}
+                    className="nav-link btn-rotate"
+                  >
+                    <i className="nc-icon nc-button-power" />
+                    <p>
+                      <span className="d-lg-none d-md-block">Sign Out</span>
+                    </p>
+                  </Link>
+                </NavItem>
+              </Nav>
+            ) : null}
           </Collapse>
         </Container>
       </Navbar>
