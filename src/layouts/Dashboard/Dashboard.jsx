@@ -1,6 +1,8 @@
 /* eslint-disable react/no-string-refs */
 
 import React from "react";
+import localStorage from "localStorage";
+
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -51,6 +53,15 @@ class Dashboard extends React.Component {
   // handleBgClick = (color) => {
   //   this.setState({ backgroundColor: color });
   // }
+
+  isAuthentication = () => {
+    if (localStorage.getItem("token") === null) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   render() {
     return (
       <div className="wrapper">
@@ -70,9 +81,27 @@ class Dashboard extends React.Component {
               if (prop.redirect) {
                 return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
               }
-              return (
-                <Route path={prop.path} component={prop.component} key={key} />
-              );
+              if (prop.isAuth === true) {
+                if (this.isAuthentication()) {
+                  return (
+                    <Route
+                      path={prop.path}
+                      component={prop.component}
+                      key={key}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/login" key="Login" />;
+                }
+              } else {
+                return (
+                  <Route
+                    path={prop.path}
+                    component={prop.component}
+                    key={key}
+                  />
+                );
+              }
             })}
           </Switch>
           <Footer fluid />

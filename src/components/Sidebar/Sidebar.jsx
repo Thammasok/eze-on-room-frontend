@@ -14,14 +14,14 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.activeRoute.bind(this);
-    this.isAuth.bind(this);
+    this.isAuthentication.bind(this);
   }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
 
-  isAuth() {
+  isAuthentication() {
     if (localStorage.getItem("token") === null) {
       return false;
     } else {
@@ -63,8 +63,34 @@ class Sidebar extends React.Component {
           <Nav>
             {this.props.routes.map((prop, key) => {
               if (prop.redirect) return null;
-              if (this.isAuth() === true) {
-                if (prop.name === "Login") return null;
+              if (prop.isAuth) {
+                if (this.isAuthentication()) {
+                  if (prop.name === "Login") return null;
+                  return (
+                    <li
+                      className={
+                        this.activeRoute(prop.path) +
+                        (prop.pro ? " active-pro" : "")
+                      }
+                      key={key}
+                    >
+                      <NavLink
+                        to={prop.path}
+                        className="nav-link"
+                        activeClassName="active"
+                      >
+                        <i className={prop.icon} />
+                        <p>{prop.name}</p>
+                      </NavLink>
+                    </li>
+                  );
+                } else {
+                  return null;
+                }
+              } else {
+                if (this.isAuthentication()) {
+                  if (prop.name === "Login") return null;
+                }
                 return (
                   <li
                     className={
@@ -83,8 +109,6 @@ class Sidebar extends React.Component {
                     </NavLink>
                   </li>
                 );
-              } else {
-                return null;
               }
             })}
           </Nav>
