@@ -13,10 +13,7 @@ export const getUserSingInRequest = (username, password) => ({
 export const getUserSingInRequestFail = errorResult => ({
   type: SIGN_IN_REQUEST_FAILED,
   error: true,
-  data: {
-    message: errorResult.message,
-    path: errorResult.path[0]
-  }
+  data: errorResult
 });
 
 export const getUserSingInResult = userData => ({
